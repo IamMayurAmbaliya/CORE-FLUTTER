@@ -1,3 +1,4 @@
+/*
 void main(){
   List MAYUR = [1, "MAYUR", 74525, 5425.5454, true];
   print(MAYUR);
@@ -17,7 +18,18 @@ void main(){
   int a=MAYUR.length;
   //print(a);
   print("LENGHTH OF LIST IS : $a");
+}*/
 
-  
+import 'dart:io';
+void main(){
+
+  int a;
+
+  stdout.write("ENTER THE NUMBER OF LENGTH : ");
+  a = int.parse(stdin.readLineSync()!);
+
+  List m = List.generate(a, (index) =>"${index+1} HELLO");
+
+  print(m);
 
 }
