@@ -4,31 +4,32 @@ class CAR{
   String? _car_color;
   double? _car_price;
 
-  set setCARREGNO(int car_reg_no){
+  void setCARREGNO(int car_reg_no){
     _car_reg_no = car_reg_no;
   }
-  set setCARNAME(String car_name){
+  void setCARNAME(String car_name){
     _car_name = car_name;
   }
-  set setCARCOLOR(String car_color){
+  void setCARCOLOR(String car_color){
     _car_color = car_color;
   }
-  set setCARPRICE(double car_price){
+  void setCARPRICE(double car_price){
     _car_price = car_price;
   }
 
 
-  int get getCARREGNO{
-    return _car_reg_no!;
-  }
-  String get getCARNAME{
-    return _car_name!;
-  }
-  String get getCARCOLOR{
-    return _car_color!;
-  }
-  double get getCARPRICE{
-    return _car_price!;
-  }
-
+ void getData(){
+  print("CAR REGISTER NUMBER : $_car_reg_no");
+  print("CAR NAME\t    : $_car_name");
+  print("CAR COLOR\t    : $_car_color");
+  print("CAR PRICE\t    : $_car_price");
+ }
 }
+
+void main(){
+  CAR car = CAR();
+
+  car..setCARREGNO(101515)..setCARNAME("VOLKSWAGON")..setCARCOLOR("BLACK")..setCARPRICE(2199999.00);
+  car.getData();
+}
+

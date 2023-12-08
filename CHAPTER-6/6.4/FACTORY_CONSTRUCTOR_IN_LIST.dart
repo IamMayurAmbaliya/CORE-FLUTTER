@@ -38,9 +38,21 @@ void main() {
 //   stud.getStudenetData();
 
   List<Map> studData = [
-    {'id': 101, 'name': "JARAMAM", 'per': 89.45},
-    {'id': 102, 'name': "JAYNESHSIR", 'per': 91.80},
-    {'id': 103, 'name': "JAYSIR", 'per': 92.45},
+    {
+      'id': 101,
+      'name': "JARAMAM",
+      'per': 89.45,
+    },
+    {
+      'id': 102,
+      'name': "JAYNESHSIR",
+      'per': 91.88,
+    },
+    {
+      'id': 103,
+      'name': "JAYSIR",
+      'per': 92.00,
+    },
   ];
 
   List STUDENTDATA = studData.map((e) => Student.fromMap(data: e)).toList();
