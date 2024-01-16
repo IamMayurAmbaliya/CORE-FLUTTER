@@ -1,10 +1,24 @@
 import 'dart:io';
 
 void main() {
-  int sumOfAllElements = 0;
-  int? operation;
-  List<List<int>> array = [];
+  List<List<int>> array = List.generate(3, (index) => List<int>.filled(3, 0));
 
+  for (int i = 0; i < array.length; i++) {
+    for (int j = 0; j < array[i].length; j++) {
+      stdout.write("Enter element at position ($i, $j): ");
+      array[i][j] = int.parse(stdin.readLineSync()!);
+    }
+  }
+
+  print("\nOriginal Array:");
+  for (int i = 0; i < array.length; i++) {
+    for (int j = 0; j < array[i].length; j++) {
+      stdout.write("${array[i][j]} ");
+    }
+    print("");
+  }
+
+  var operation;
   do {
     print('Please enter the number of operation you want to perform:');
     print('1. Sum of all elements');
@@ -18,53 +32,47 @@ void main() {
 
     switch (operation) {
       case 1:
-        for (int i = 0; i < 3; i++) {
-          for (int j = 0; j < 3; j++) {
-            List<int> row = [];
-            for (int j = 0; j < 3; j++) {
-              int num = int.parse(stdin.readLineSync()!);
-              row.add(num);
-              sumOfAllElements += num;
-            }
-            array.add(row);
+        int sum = 0;
+        for (int i = 0; i < array.length; i++) {
+          for (int j = 0; j < array[i].length; j++) {
+            sum += array[i][j];
           }
         }
-        print('Sum of all elements: $sumOfAllElements');
+        print("\nSum of all elements: $sum");
         break;
       case 2:
-        print('Enter the row number:');
-        int rowNumber = int.parse(stdin.readLineSync()!);
-        int sumOfRow = array[rowNumber - 1].reduce((a, b) => a + b);
-        print('Sum of row $rowNumber: $sumOfRow');
+        stdout.write("\nEnter the row index (0-2) to find the sum: ");
+        int rowIndex = int.parse(stdin.readLineSync()!);
 
+        int rowSum = 0;
+        for (int j = 0; j < array[rowIndex].length; j++) {
+          rowSum += array[rowIndex][j];
+        }
+        print("\nSum of Row $rowIndex: $rowSum");
         break;
       case 3:
-        print("Enter the column number:");
-        int columnNumber = int.parse(stdin.readLineSync()!);
-        int sumOfColumn = 0;
-        for (int i = 0; i < 3; i++) {
-          sumOfColumn += array[i][columnNumber - 1];
+        stdout.write("\nEnter the column index (0-2) to find the sum: ");
+        int colIndex = int.parse(stdin.readLineSync()!);
+        int colSum = 0;
+        for (int i = 0; i < array[colIndex].length; i++) {
+          colSum += array[i][colIndex];
         }
-        print("Sum of column $columnNumber: $sumOfColumn");
+        print("\nSum of Column $colIndex: $colSum");
         break;
       case 4:
-        int sumOfDiagonal = 0;
-        for (int i = 0; i < 3; i++) {
-          sumOfDiagonal += array[i][i];
+        int diagonalSum = 0;
+        for (int i = 0; i < array.length; i++) {
+          diagonalSum += array[i][i];
         }
-        print("Sum of diagonal:$sumOfDiagonal");
+        print("\nSum of diagonal elements: $diagonalSum");
         break;
 
       case 5:
-        int sumofAntiDiagonal = 0;
-        for (int i = 0; i < 3; i++) {
-          for (int j = 0; j < 3; j++) {
-            if (i + j == ((3 + 1) - 2)) {
-              sumofAntiDiagonal += array[i][j];
-            }
-          }
+        int antidiagonalSum = 0;
+        for (int i = 0; i < array.length; i++) {
+          antidiagonalSum += array[i][2 - i];
         }
-        print("The Sum Of Anti-Diagonal Is:$sumofAntiDiagonal");
+        print("\nSum of anti-diagonal elements: $antidiagonalSum");
         break;
       default:
         print("Invalid Choice");

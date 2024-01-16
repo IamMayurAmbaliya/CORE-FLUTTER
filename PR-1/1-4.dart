@@ -1,38 +1,61 @@
 import 'dart:io';
 
 void main() {
-  List<List<int>> matrix1 =
-      List<List<int>>.generate(3, (i) => List<int>.generate(3, (j) => 0));
-  List<List<int>> matrix2 =
-      List<List<int>>.generate(3, (i) => List<int>.generate(3, (j) => 0));
-  List<List<int>> result =
-      List<List<int>>.generate(3, (i) => List<int>.generate(3, (j) => 0));
+  int c, r;
 
-  stdout.write("Enter Array Size:");
-  int length = int.parse(stdin.readLineSync()!);
+  stdout.write("Enter Number Of Column : ");
+  c = int.parse(stdin.readLineSync()!);
 
-  for (int i = 0; i < length; i++) {
-    for (int j = 0; j < length; j++) {
-      stdout.write("Enter the elements of the first matrix:");
-      matrix1[i][j] = int.parse(stdin.readLineSync()!);
+  stdout.write("Enter Number Of Row : ");
+  r = int.parse(stdin.readLineSync()!);
+
+  List FirstMatrix = List.generate(r, (i) => List.generate(c, (j) => 0));
+  List SecondMatrix = List.generate(r, (i) => List.generate(c, (j) => 0));
+  List result = List.generate(r, (i) => List.generate(c, (j) => 0));
+
+  int sum1 = 0;
+  int sum2 = 0;
+
+  for (int i = 0; i < r; i++) {
+    for (int j = 0; j < c; j++) {
+      stdout.write("Enter elements of the first matrix:");
+      FirstMatrix[i][j] = int.parse(stdin.readLineSync()!);
+
+      sum1 += FirstMatrix[i][j] as int;
     }
   }
 
-  for (int i = 0; i < 3; i++) {
-    for (int j = 0; j < 3; j++) {
-      stdout.write("Enter the elements of the second matrix:");
-      matrix2[i][j] = int.parse(stdin.readLineSync()!);
+  for (int i = 0; i < r; i++) {
+    for (int j = 0; j < c; j++) {
+      stdout.write("Enter elements of the second matrix:");
+      SecondMatrix[i][j] = int.parse(stdin.readLineSync()!);
+
+      sum1 += SecondMatrix[i][j] as int;
     }
   }
 
-  for (int i = 0; i < 3; i++) {
-    for (int j = 0; j < 3; j++) {
-      result[i][j] = matrix1[i][j] + matrix2[i][j];
+  for (int i = 0; i < r; i++) {
+    for (int j = 0; j < c; j++) {
+      stdout.write("${FirstMatrix[i][j]} ");
     }
+    print(" ");
   }
 
-  stdout.write("The Sum Of Matrix Are:\n");
-  for (int i = 0; i < 3; i++) {
-    print(result[i].join(' '));
+  print("\n");
+
+  for (int i = 0; i < r; i++) {
+    for (int j = 0; j < c; j++) {
+      stdout.write("${SecondMatrix[i][j]} ");
+    }
+    print(" ");
   }
+
+  for (int i = 0; i < r; i++) {
+    for (int j = 0; j < c; j++) {
+      result[i][j] = FirstMatrix[i][j] + SecondMatrix[i][j];
+    }
+  }
+  int TotalSum = sum1 + sum2;
+
+  stdout.write("The Sum Of Both Matrix's Elements Are:$TotalSum");
 }
